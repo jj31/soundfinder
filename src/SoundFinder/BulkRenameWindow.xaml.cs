@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows;
 using SoundFinder.Core.Models;
 using SoundFinder.Core.Rename;

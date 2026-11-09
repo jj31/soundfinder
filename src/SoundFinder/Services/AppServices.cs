@@ -1,3 +1,4 @@
+using System.IO;
 using SoundFinder.Core.Data;
 using SoundFinder.Core.Indexing;
 using SoundFinder.Core.Metadata;

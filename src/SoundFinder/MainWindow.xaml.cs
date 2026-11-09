@@ -1,6 +1,8 @@
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using SoundFinder.Audio;
 using SoundFinder.Core.Audio;
 using SoundFinder.Core.Models;
 using SoundFinder.Services;

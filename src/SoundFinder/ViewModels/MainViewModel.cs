@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using SoundFinder.Core.Metadata;
@@ -129,7 +130,7 @@ public sealed class MainViewModel : INotifyPropertyChanged
         Status = "Arrêt.";
     }
 
-    public void SaveMetadata(bool writeToFile)
+    public void SaveMetadata(bool writeToFile = false)
     {
         if (SelectedSample is null)
         {
