@@ -17,7 +17,11 @@ public sealed class MetadataService
     public SampleFile? Update(long sampleId, MetadataPatch patch, bool writeToFile = false)
     {
         var repository = new SampleRepository(_database);
-        var sample = repository.GetById(sampleId) ?? return null;
+        var sample = repository.GetById(sampleId);
+        if (sample is null)
+        {
+            return null;
+        }
 
         if (patch.Tags is not null)
         {

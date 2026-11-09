@@ -53,12 +53,6 @@ public sealed class LibraryIndexer
                     TryDelete(tempFile);
                 }
             }
-            catch (Exception ex) when (ex is not OperationCanceledException)
-            {
-                report.Errors++;
-                report.ErrorMessages.Add($"{file.Path}: {ex.Message}");
-                continue;
-            }
 
             var sample = new SampleFile
             {
