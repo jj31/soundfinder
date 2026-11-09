@@ -12,14 +12,19 @@ public class MetadataAndRenameTests : IDisposable
 
     public void Dispose() => _database.Dispose();
 
-    private SampleFile Seed(string fileName, string tags = "", double? bpm = null, string key = "")
-    {
-        var libraryId = new LibraryRepository(_database).Add(new Library
+    private long SeedLibrary(string name = "Lib") =>
+        new LibraryRepository(_database).Add(new Library
         {
-            Name = "Lib",
+            Name = name,
             RootPath = "/tmp",
             SourceType = SourceType.Local
         });
+
+    private SampleFile Seed(string fileName, string tags = "", double? bpm = null, string key = "") =>
+        Seed(SeedLibrary(), fileName, tags, bpm, key);
+
+    private SampleFile Seed(long libraryId, string fileName, string tags = "", double? bpm = null, string key = "")
+    {
         var sample = new SampleFile
         {
             LibraryId = libraryId,
@@ -80,8 +85,9 @@ public class MetadataAndRenameTests : IDisposable
     [Fact]
     public void Rename_PreviewDetectsCollision()
     {
-        Seed("one.wav");
-        var two = Seed("two.wav");
+        var libraryId = SeedLibrary();
+        Seed(libraryId, "one.wav");
+        var two = Seed(libraryId, "two.wav");
         var service = new BulkRenameService(_database);
         var preview = service.Preview(new RenameRequest
         {
