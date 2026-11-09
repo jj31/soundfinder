@@ -106,13 +106,11 @@ public sealed class Database : IDisposable
             END;
 
             CREATE TRIGGER IF NOT EXISTS Samples_ad AFTER DELETE ON Samples BEGIN
-                INSERT INTO SamplesFts(SamplesFts, rowid, FileName, Tags, Comment)
-                VALUES ('delete', old.Id, old.FileName, old.Tags, old.Comment);
+                DELETE FROM SamplesFts WHERE rowid = old.Id;
             END;
 
             CREATE TRIGGER IF NOT EXISTS Samples_au AFTER UPDATE ON Samples BEGIN
-                INSERT INTO SamplesFts(SamplesFts, rowid, FileName, Tags, Comment)
-                VALUES ('delete', old.Id, old.FileName, old.Tags, old.Comment);
+                DELETE FROM SamplesFts WHERE rowid = old.Id;
                 INSERT INTO SamplesFts(rowid, FileName, Tags, Comment)
                 VALUES (new.Id, new.FileName, new.Tags, new.Comment);
             END;
