@@ -42,6 +42,21 @@ public sealed class SampleRepository
         return result;
     }
 
+    public List<string> GetPathsByLibrary(long libraryId)
+    {
+        var paths = new List<string>();
+        using var connection = _database.OpenConnection();
+        using var command = connection.CreateCommand();
+        command.CommandText = "SELECT Path FROM Samples WHERE LibraryId = @lib";
+        command.Parameters.AddWithValue("@lib", libraryId);
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            paths.Add(reader.GetString(0));
+        }
+        return paths;
+    }
+
     public long Upsert(SampleFile sample)
     {
         using var connection = _database.OpenConnection();
