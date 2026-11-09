@@ -2,6 +2,7 @@ using SoundFinder.Core.Data;
 using SoundFinder.Core.Metadata;
 using SoundFinder.Core.Models;
 using SoundFinder.Core.Rename;
+using SoundFinder.Core.Search;
 
 namespace SoundFinder.Core.Tests;
 
@@ -64,7 +65,7 @@ public class MetadataAndRenameTests : IDisposable
         var service = new MetadataService(_database);
         service.Update(sample.Id, new MetadataPatch { Tags = "ambient pad" });
 
-        var result = new Search.SearchService(_database).Search(new SearchFilter { Query = "pad" });
+        var result = new SearchService(_database).Search(new SearchFilter { Query = "pad" });
         Assert.Single(result.Items);
     }
 
