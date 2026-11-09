@@ -97,7 +97,7 @@ public sealed class FtpSampleSource : ISampleSource
     private FtpWebRequest CreateRequest(string remotePath, string method)
     {
         var uri = new Uri(_baseUri, Uri.EscapeUriString(remotePath).Replace("%2F", "/"));
-        var request = WebRequest.CreateFtp(uri);
+        var request = (FtpWebRequest)WebRequest.Create(uri);
         request.Method = method;
         request.Credentials = _credentials;
         request.UseBinary = true;

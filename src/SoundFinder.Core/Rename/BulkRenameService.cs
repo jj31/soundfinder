@@ -17,7 +17,7 @@ public sealed class BulkRenameService
         foreach (var group in samples.GroupBy(s => s.LibraryId))
         {
             usedNames[group.Key] = new HashSet<string>(
-                samples.Where(s => s.LibraryId == group.Key).Select(NormalizeName),
+                samples.Where(s => s.LibraryId == group.Key).Select(s => NormalizeName(s.Path)),
                 StringComparer.OrdinalIgnoreCase);
         }
 
