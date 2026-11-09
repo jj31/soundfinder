@@ -1,0 +1,37 @@
+<Window x:Class="SoundFinder.AddLibraryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Ajouter une bibliothèque" Width="460" Height="260"
+        WindowStartupLocation="CenterOwner" Background="#FF2B2B2B" Foreground="#FFE0E0E0">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Nom :" VerticalAlignment="Center" />
+        <TextBox x:Name="NameBox" Grid.Row="0" Grid.Column="1" Margin="0,4" />
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Type :" VerticalAlignment="Center" />
+        <ComboBox x:Name="TypeBox" Grid.Row="1" Grid.Column="1" Margin="0,4" SelectedIndex="0" />
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Chemin / URI :" VerticalAlignment="Center" />
+        <TextBox x:Name="PathBox" Grid.Row="2" Grid.Column="1" Margin="0,4" />
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Identifiant :" VerticalAlignment="Center" />
+        <TextBox x:Name="UserBox" Grid.Row="3" Grid.Column="1" Margin="0,4" />
+
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Annuler" Click="OnCancel" Margin="0,0,8,0" Padding="12,2" />
+            <Button Content="Ajouter" Click="OnOk" Padding="12,2" />
+        </StackPanel>
+    </Grid>
+</Window>
