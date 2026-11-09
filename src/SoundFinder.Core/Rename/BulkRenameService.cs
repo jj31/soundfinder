@@ -87,8 +87,8 @@ public sealed class BulkRenameService
     public static string ExpandPattern(string pattern, SampleFile sample)
     {
         var extension = sample.Extension;
-        var nameWithoutExtension = sample.FileName.Length > extension.Length
-            ? sample.FileName[..^extension.Length]
+        var nameWithoutExtension = sample.FileName.EndsWith("." + extension, StringComparison.OrdinalIgnoreCase)
+            ? sample.FileName[..^(extension.Length + 1)]
             : sample.FileName;
         var replacement = pattern
             .Replace("{name}", nameWithoutExtension, StringComparison.OrdinalIgnoreCase)
